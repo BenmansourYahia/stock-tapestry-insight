@@ -48,12 +48,22 @@ export const api = {
     request<DashboardPoint[]>(`/evolutionCA?dateDebut=${encodeURIComponent(dateDebut)}&dateFin=${encodeURIComponent(dateFin)}${codeMagasin ? `&codeMagasin=${encodeURIComponent(codeMagasin)}` : ""}`),
   getInfosByDate: (debut: string, fin: string) =>
     request<any>("/getInfosByDate", { method: "POST", body: JSON.stringify({ debut, fin }) }),
+  getInfosDay: (debut: string, fin: string) =>
+    request<any>("/getInfosDay", { method: "POST", body: JSON.stringify({ debut, fin }) }),
   getMagasinsInfoByDate: (withDate: boolean, debut?: string, fin?: string) =>
     request<any>("/getMagasinsInfoByDate", { method: "POST", body: JSON.stringify({ withDate, debut, fin }) }),
   bestSalesPrds: (numMagasin: number, debut: string, fin: string) =>
     request<any>("/bestSalesPrds", { method: "POST", body: JSON.stringify({ numMagasin, debut, fin }) }),
+  getPrdsVendus: (numMagasin: number, debut: string, fin: string) =>
+    request<any>("/getPrdsVendus", { method: "POST", body: JSON.stringify({ numMagasin, debut, fin }) }),
+  getDimsPrdVendus: (numMagasin: number, numProduit: number, debut: string, fin: string) =>
+    request<any>("/getDimsPrdVendus", { method: "POST", body: JSON.stringify({ numMagasin, numProduit, debut, fin }) }),
+  getLineVentes: (numMvt: number, numMagasin: number) =>
+    request<any>("/getLineVentes", { method: "POST", body: JSON.stringify({ numMvt, numMagasin }) }),
   stockByProduct: (isByBarcode: boolean, value: string) =>
     request<any>("/StockByProduct", { method: "POST", body: JSON.stringify(isByBarcode ? { isByBarcode: true, barecode: value } : { isByBarcode: false, codeProduit: value }) }),
+  getDims: (barCode: string) =>
+    request<any>("/getDims", { method: "POST", body: JSON.stringify({ barCode }) }),
   globalStock: (from = 0, to = 50, stockBy = 1, chaine?: string) =>
     request<any>("/GlobalStock", { method: "POST", body: JSON.stringify({ from, to, stockBy, chaine }) }),
   compareMagasins: (codes: string[]) =>
